@@ -1,5 +1,5 @@
 let keys
-
+let random
 document.addEventListener('keydown', function abc(event) {
     keys = event.key;
     call();
@@ -44,10 +44,20 @@ function call() {
         //     console.log("khalii");
 
         // }
-        let randon = Math.floor(Math.random() * empty.length)
-        abc.innerHTML = empty[randon]
+        random = Math.floor(Math.random() * empty.length)
+        // text = abc.innerText
+
+        abc.innerText = empty[random]
 
     }
+    let spech = new SpeechSynthesisUtterance()
+    spech.lang = 'en-US';
+    spech.pitch = 1;
+    spech.rate = 2;
+    spech.text = empty[random]
+    window.speechSynthesis.speak(spech)
+
+    // console.log(empty[random]);
 
 
 
