@@ -1,10 +1,10 @@
 let keys
 let random
 document.addEventListener('keydown', function abc(event) {
-    keys = event.key;
-    call();
+    keys = event.key.toString().toUpperCase();
+    button();
 })
-function call() {
+function button(input) {
     let Array =
         ["Ant", "Apple", "Artist", "Air", "Astronaut", "Acorn", "Arrow", "Aided", "Ache", "Alarm",
             "Bag", "Ball", "Bee", "Boat", "Born", "Big", "Bingo", "Baby", "Bake", "Boy",
@@ -35,31 +35,38 @@ function call() {
     let empty = [];
 
     let abc = document.getElementById("h2")
+    let char = keys.toUpperCase().charCodeAt()
     for (let i = 0; i < Array.length; i++) {
-        if (Array[i][0].toLowerCase() == keys) {
+        if (Array[i][0].toUpperCase() == keys || Array[i][0].toUpperCase() == input) {
             empty.push(Array[i])
         }
-        // abc.innerHTML = `I Have No Word For This Letter`
-        // if(empty !== ){
-        //     console.log("khalii");
 
-        // }
+
+
         random = Math.floor(Math.random() * empty.length)
-        // text = abc.innerText
-
         abc.innerText = empty[random]
+        if (abc.innerText == 'undefined') {
+            abc.innerText = `Sorry We Have Not This Type Of Word`
+        }
+
 
     }
     let spech = new SpeechSynthesisUtterance()
     spech.lang = 'en-US';
     spech.pitch = 1;
-    spech.rate = 2;
+    spech.rate = 1;
     spech.text = empty[random]
+    if (spech.text == 'undefined') {
+        spech.text = `Sorry We Have Not This Type Of Word`
+    }
     window.speechSynthesis.speak(spech)
 
-    // console.log(empty[random]);
+
 
 
 
 }
-// call();
+
+
+// let abc = "z"
+// console.log(abc.charCodeAt());
